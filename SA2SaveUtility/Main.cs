@@ -31,10 +31,10 @@ namespace SA2SaveUtility
 
         public string loadedFile { get; set; }
         public string currentDir = Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString();
-        public string backupsDir = Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString() + @"\backups";
-        public static string oldDir = Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString() + @"\old";
-        string chaoDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location) + @"\chao";
-        public static string configFile = Directory.GetParent(Assembly.GetExecutingAssembly().Location) + @"\config.xml";
+        public string backupsDir = Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString() + @"/backups";
+        public static string oldDir = Directory.GetParent(Assembly.GetExecutingAssembly().Location).ToString() + @"/old";
+        string chaoDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location) + @"/chao";
+        public static string configFile = Directory.GetParent(Assembly.GetExecutingAssembly().Location) + @"/config.xml";
 
         public static Version currentVersion;
 
@@ -203,7 +203,7 @@ namespace SA2SaveUtility
 
         private void Tsmi_RTE_SA2_Chao_Click(object sender, EventArgs e)
         {
-            ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Live Editor - SA2 Chao]";
+            this.Text = "Sonic Adventure 2 - Save Utility [Live Editor - SA2 Chao]";
             isRTE = true;
             isPC = true;
             isSA = false;
@@ -212,7 +212,7 @@ namespace SA2SaveUtility
 
         private void Tsmi_RTE_SA2_Main_Click(object sender, EventArgs e)
         {
-            ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Live Editor - SA2 Main]";
+            this.Text = "Sonic Adventure 2 - Save Utility [Live Editor - SA2 Main]";
             isRTE = true;
             isPC = true;
             isSA = false;
@@ -243,7 +243,7 @@ namespace SA2SaveUtility
                         isSA = true;
                         isPC = true;
                         isGC = false;
-                        ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Editing SA PC Chao Save]";
+                        this.Text = "Sonic Adventure 2 - Save Utility [Editing SA PC Chao Save]";
                     }
                     if (result == DialogResult.No)
                     {
@@ -251,7 +251,7 @@ namespace SA2SaveUtility
                         isSA = true;
                         isPC = false;
                         isGC = false;
-                        ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Editing SA 360/PS3 Chao Save]";
+                        this.Text = "Sonic Adventure 2 - Save Utility [Editing SA 360/PS3 Chao Save]";
                     }
                     validSave = true;
                     IsChao();
@@ -259,7 +259,7 @@ namespace SA2SaveUtility
 
                 if (loadedSave.Length == 0x6000)
                 {
-                    ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Editing PC Main Save]";
+                    this.Text = "Sonic Adventure 2 - Save Utility [Editing PC Main Save]";
                     isRTE = false;
                     isSA = false;
                     isPC = true;
@@ -276,7 +276,7 @@ namespace SA2SaveUtility
                         isSA = false;
                         isPC = true;
                         isGC = false;
-                        ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Editing PC Chao Save]";
+                        this.Text = "Sonic Adventure 2 - Save Utility [Editing PC Chao Save]";
                     }
                     if (result == DialogResult.No)
                     {
@@ -284,14 +284,14 @@ namespace SA2SaveUtility
                         isSA = false;
                         isPC = false;
                         isGC = false;
-                        ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Editing 360/PS3 Chao Save]";
+                        this.Text = "Sonic Adventure 2 - Save Utility [Editing 360/PS3 Chao Save]";
                     }
                     validSave = true;
                     IsChao();
                 }
                 if (loadedSave.Length == 0x3C028)
                 {
-                    ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Editing 360 Main Save]";
+                    this.Text = "Sonic Adventure 2 - Save Utility [Editing 360 Main Save]";
                     isRTE = false;
                     isSA = false;
                     isPC = false;
@@ -302,7 +302,7 @@ namespace SA2SaveUtility
                 }
                 if (loadedSave.Length == 0x3C050)
                 {
-                    ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Editing PS3 Main Save]";
+                    this.Text = "Sonic Adventure 2 - Save Utility [Editing PS3 Main Save]";
                     isRTE = false;
                     isSA = false;
                     isPC = false;
@@ -313,7 +313,7 @@ namespace SA2SaveUtility
                 }
                 if (loadedSave.Length == 0x6040)
                 {
-                    ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Editing Gamecube Main Save]";
+                    this.Text = "Sonic Adventure 2 - Save Utility [Editing Gamecube Main Save]";
                     isRTE = false;
                     isSA = false;
                     isPC = false;
@@ -326,7 +326,7 @@ namespace SA2SaveUtility
                 }
                 if (loadedSave.Length == 0x10040)
                 {
-                    ActiveForm.Text = "Sonic Adventure 2 - Save Utility [Editing Gamecube Chao Save]";
+                    this.Text = "Sonic Adventure 2 - Save Utility [Editing Gamecube Chao Save]";
                     isRTE = false;
                     isSA = false;
                     isPC = false;
@@ -340,7 +340,7 @@ namespace SA2SaveUtility
                 if (validSave)
                 {
                     loadedFile = loadSave.FileName;
-                    File.WriteAllBytes(backupsDir + @"\" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + "." + loadSave.SafeFileName, loadedSave.ToArray());
+                    File.WriteAllBytes(backupsDir + @"/" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + "." + loadSave.SafeFileName, loadedSave.ToArray());
                     tsmi_Save.Enabled = true;
                 }
                 else
@@ -590,7 +590,7 @@ namespace SA2SaveUtility
                         byteArray.AddRange(chaoToSave.Take(0x3040).ToArray());
                         byteArray.AddRange(splitForChecksum);
                         chaoToSave = byteArray.ToArray();
-                        string pcFileName = Path.GetDirectoryName(loadedFile) + @"\SONIC2B__ALF";
+                        string pcFileName = Path.GetDirectoryName(loadedFile) + @"/SONIC2B__ALF";
                         int index = 1;
                         while (true)
                         {
@@ -600,7 +600,7 @@ namespace SA2SaveUtility
                             }
                             else
                             {
-                                pcFileName = Path.GetDirectoryName(loadedFile) + @"\SONIC2B__ALF" + index;
+                                pcFileName = Path.GetDirectoryName(loadedFile) + @"/SONIC2B__ALF" + index;
                                 index++;
                             }
                         }
@@ -626,7 +626,7 @@ namespace SA2SaveUtility
                             toSave = MainSave.ByteSwapMain(toSave.ToArray()).ToList();
                         }
                         toSave = new List<byte>(Checksum.WriteMainChecksum(toSave.ToArray(), true, false, false));
-                        string pcFileName = Path.GetDirectoryName(loadedFile) + @"\SONIC2B__S01";
+                        string pcFileName = Path.GetDirectoryName(loadedFile) + @"/SONIC2B__S01";
                         int index = 1;
                         while (true)
                         {
@@ -636,7 +636,7 @@ namespace SA2SaveUtility
                             }
                             else
                             {
-                                pcFileName = Path.GetDirectoryName(loadedFile) + @"\SONIC2B__S" + index.ToString("00");
+                                pcFileName = Path.GetDirectoryName(loadedFile) + @"/SONIC2B__S" + index.ToString("00");
                                 index++;
                             }
                         }
@@ -667,7 +667,7 @@ namespace SA2SaveUtility
                         if (!isPC) { byteList = ChaoSave.ByteSwapChaoWorld(byteList.ToArray()).ToList(); }
                         byte[] chaoToSave = byteList.ToArray();
                         Checksum.WriteChaoChecksum(chaoToSave, false);
-                        string pcFileName = Path.GetDirectoryName(loadedFile) + @"\SonicAdventureChaoGarden.snc";
+                        string pcFileName = Path.GetDirectoryName(loadedFile) + @"/SonicAdventureChaoGarden.snc";
                         int index = 1;
                         while (true)
                         {
@@ -677,7 +677,7 @@ namespace SA2SaveUtility
                             }
                             else
                             {
-                                pcFileName = Path.GetDirectoryName(loadedFile) + @"\SonicAdventureChaoGarden" + index + ".snc";
+                                pcFileName = Path.GetDirectoryName(loadedFile) + @"/SonicAdventureChaoGarden" + index + ".snc";
                                 index++;
                             }
                         }
@@ -886,7 +886,7 @@ namespace SA2SaveUtility
                     byteList.RemoveRange(0x3080, byteList.Count - 0x3080);
                     byteList.AddRange(splitForChecksum.ToList());
 
-                    string gcFileName = Path.GetDirectoryName(loadedFile) + @"\SA2CHAO.gci";
+                    string gcFileName = Path.GetDirectoryName(loadedFile) + @"/SA2CHAO.gci";
                     int index = 1;
                     while (true)
                     {
@@ -896,7 +896,7 @@ namespace SA2SaveUtility
                         }
                         else
                         {
-                            gcFileName = Path.GetDirectoryName(loadedFile) + @"\SA2CHAO" + index + ".gci";
+                            gcFileName = Path.GetDirectoryName(loadedFile) + @"/SA2CHAO" + index + ".gci";
                             index++;
                         }
                     }
@@ -1190,7 +1190,7 @@ namespace SA2SaveUtility
                     toSave.InsertRange(0, header);
                     toSave.RemoveRange(0x80, 0x2800);
                     toSave.InsertRange(0x80, header2);
-                    string gcFileName = Path.GetDirectoryName(loadedFile) + @"\SA2MAIN" + gcFileNoString + ".gci";
+                    string gcFileName = Path.GetDirectoryName(loadedFile) + @"/SA2MAIN" + gcFileNoString + ".gci";
                     int index = 1;
                     while (true)
                     {
@@ -1200,7 +1200,7 @@ namespace SA2SaveUtility
                         }
                         else
                         {
-                            gcFileName = Path.GetDirectoryName(loadedFile) + @"\SA2MAIN" + gcFileNoString + index.ToString("00") + ".gci";
+                            gcFileName = Path.GetDirectoryName(loadedFile) + @"/SA2MAIN" + gcFileNoString + index.ToString("00") + ".gci";
                             index++;
                         }
                     }
@@ -1276,7 +1276,7 @@ namespace SA2SaveUtility
                     byteArray.AddRange(chaoToSave.Take(0x3040).ToArray());
                     byteArray.AddRange(splitForChecksum);
                     chaoToSave = byteArray.ToArray();
-                    string consoleFileName = Path.GetDirectoryName(loadedFile) + @"\CHAOSAVE";
+                    string consoleFileName = Path.GetDirectoryName(loadedFile) + @"/CHAOSAVE";
                     int index = 1;
                     while (true)
                     {
@@ -1286,7 +1286,7 @@ namespace SA2SaveUtility
                         }
                         else
                         {
-                            consoleFileName = Path.GetDirectoryName(loadedFile) + @"\CHAOSAVE" + index;
+                            consoleFileName = Path.GetDirectoryName(loadedFile) + @"/CHAOSAVE" + index;
                             index++;
                         }
                     }
@@ -1325,7 +1325,7 @@ namespace SA2SaveUtility
                     {
                         toSave.Add(0x00);
                     }
-                    string consoleFileName = Path.GetDirectoryName(loadedFile) + @"\SA2SAVE";
+                    string consoleFileName = Path.GetDirectoryName(loadedFile) + @"/SA2SAVE";
                     int index = 1;
                     while (true)
                     {
@@ -1335,7 +1335,7 @@ namespace SA2SaveUtility
                         }
                         else
                         {
-                            consoleFileName = Path.GetDirectoryName(loadedFile) + @"\SA2SAVE" + index;
+                            consoleFileName = Path.GetDirectoryName(loadedFile) + @"/SA2SAVE" + index;
                             index++;
                         }
                     }
@@ -1405,7 +1405,7 @@ namespace SA2SaveUtility
                                 }
                                 slotIndex++;
                             }
-                            string consoleFileName = Path.GetDirectoryName(loadedFile) + @"\SA2SAVE";
+                            string consoleFileName = Path.GetDirectoryName(loadedFile) + @"/SA2SAVE";
                             int index = 1;
                             while (true)
                             {
@@ -1415,7 +1415,7 @@ namespace SA2SaveUtility
                                 }
                                 else
                                 {
-                                    consoleFileName = Path.GetDirectoryName(loadedFile) + @"\SA2SAVE" + index;
+                                    consoleFileName = Path.GetDirectoryName(loadedFile) + @"/SA2SAVE" + index;
                                     index++;
                                 }
                             }
@@ -1464,7 +1464,7 @@ namespace SA2SaveUtility
                     byteArray.AddRange(chaoToSave.Take(0x3040).ToArray());
                     byteArray.AddRange(splitForChecksum);
                     chaoToSave = byteArray.ToArray();
-                    string consoleFileName = Path.GetDirectoryName(loadedFile) + @"\savedata.bin";
+                    string consoleFileName = Path.GetDirectoryName(loadedFile) + @"/savedata.bin";
                     int index = 1;
                     while (true)
                     {
@@ -1474,7 +1474,7 @@ namespace SA2SaveUtility
                         }
                         else
                         {
-                            consoleFileName = Path.GetDirectoryName(loadedFile) + @"\savedata" + index + ".bin";
+                            consoleFileName = Path.GetDirectoryName(loadedFile) + @"/savedata" + index + ".bin";
                             index++;
                         }
                     }
@@ -1509,7 +1509,7 @@ namespace SA2SaveUtility
                     {
                         toSave.Add(0x00);
                     }
-                    string consoleFileName = Path.GetDirectoryName(loadedFile) + @"\savedata.bin";
+                    string consoleFileName = Path.GetDirectoryName(loadedFile) + @"/savedata.bin";
                     int index = 1;
                     while (true)
                     {
@@ -1519,7 +1519,7 @@ namespace SA2SaveUtility
                         }
                         else
                         {
-                            consoleFileName = Path.GetDirectoryName(loadedFile) + @"\savedata" + index + ".bin";
+                            consoleFileName = Path.GetDirectoryName(loadedFile) + @"/savedata" + index + ".bin";
                             index++;
                         }
                     }
@@ -1585,7 +1585,7 @@ namespace SA2SaveUtility
                                 }
                                 slotIndex++;
                             }
-                            string consoleFileName = Path.GetDirectoryName(loadedFile) + @"\savedata.bin";
+                            string consoleFileName = Path.GetDirectoryName(loadedFile) + @"/savedata.bin";
                             int index = 1;
                             while (true)
                             {
@@ -1595,7 +1595,7 @@ namespace SA2SaveUtility
                                 }
                                 else
                                 {
-                                    consoleFileName = Path.GetDirectoryName(loadedFile) + @"\savedata" + index + ".bin";
+                                    consoleFileName = Path.GetDirectoryName(loadedFile) + @"/savedata" + index + ".bin";
                                     index++;
                                 }
                             }

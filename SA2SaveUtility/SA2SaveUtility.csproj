@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SA2SaveUtility</RootNamespace>
     <AssemblyName>SA2 Save Utility</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -109,7 +109,7 @@
     <Compile Include="uc_Chao.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="uc_Chao.designer.cs">
+    <Compile Include="uc_Chao.Designer.cs">
       <DependentUpon>uc_Chao.cs</DependentUpon>
     </Compile>
     <Compile Include="uc_ChaoSave.cs">
@@ -127,7 +127,7 @@
     <Compile Include="uc_Main.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="uc_Main.designer.cs">
+    <Compile Include="uc_Main.Designer.cs">
       <DependentUpon>uc_Main.cs</DependentUpon>
     </Compile>
     <Compile Include="uc_MainChao.cs">
@@ -139,7 +139,7 @@
     <Compile Include="uc_Mission.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="uc_Mission.designer.cs">
+    <Compile Include="uc_Mission.Designer.cs">
       <DependentUpon>uc_Mission.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="HeldItems.resx">
@@ -202,9 +202,9 @@
     <Content Include="edit.ico" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
